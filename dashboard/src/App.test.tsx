@@ -4,7 +4,10 @@ import { App } from "./App";
 import { stubApi, summary } from "./testing";
 
 beforeEach(() => {
-  stubApi({ "GET /api/claims": [summary()] });
+  stubApi({
+    "GET /api/claims": [summary()],
+    "GET /api/instructions": { content: "# The UnderCover Agent" },
+  });
 });
 
 afterEach(() => {
@@ -37,9 +40,12 @@ it("goes to a claim's page", async () => {
   ).toBeDefined();
 });
 
-it("marks the instructions link when it is open", () => {
+it("goes to the agent's instructions", async () => {
   render(<App />);
   go("#/instructions");
+  expect(
+    await screen.findByRole("heading", { name: "Agent instructions" }),
+  ).toBeDefined();
   const link = screen.getByRole("link", { name: "Agent instructions" });
   expect(link.getAttribute("aria-current")).toBe("page");
 });

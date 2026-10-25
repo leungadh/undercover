@@ -76,7 +76,6 @@ h3 {
 
 .mono {
   font-family: var(--mono);
-  font-size: 0.92em;
 }
 
 .muted {
@@ -252,4 +251,191 @@ td.nowrap {
   .panel {
     padding: 16px;
   }
+}
+
+/* Claim page */
+
+.claim-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.claim-title h1 {
+  margin: 0;
+}
+
+.claim-summary {
+  margin: -8px 0 0;
+  font-family: var(--serif);
+  font-size: 22px;
+}
+
+.claim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 20px;
+  margin: 0 0 16px;
+}
+
+.facts dt {
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.story {
+  white-space: pre-wrap;
+}
+
+.cards,
+.plain {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards li {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--sunken);
+}
+
+.cards p {
+  margin: 0;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+tfoot th,
+tfoot td {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+details summary {
+  cursor: pointer;
+  color: var(--link);
+}
+
+pre {
+  margin: 8px 0 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--sunken);
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Decision and sign-off */
+
+.decision-headline {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sign-off {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--sunken);
+}
+
+.sign-off p {
+  margin-top: 0;
+}
+
+.sign-off-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+select,
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+}
+
+select {
+  background: var(--panel);
+  color: var(--ink);
+}
+
+button {
+  background: var(--sea-green);
+  color: var(--midnight);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* The agent's steps */
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--sunken);
+}
+
+.step-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.step-kind {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.step-message .step-kind {
+  color: var(--green-ink);
+}
+
+.step-title {
+  margin: 2px 0 0;
+}
+
+/* Instructions */
+
+.instructions {
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-family: var(--sans);
+  font-size: 15px;
 }

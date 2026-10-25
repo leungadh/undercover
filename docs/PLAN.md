@@ -219,15 +219,15 @@ Errors: 404 for an unknown id, 409 for the wrong status (for example, deciding a
 
 **Why now:** it completes what the spec says the team needs to see.
 
-- [ ] In the browser, `#/claims/CLM-1001` shows the story, the 3 items totaling $420.00, the 4 documents, the Premium plan with its trip dates, and Maya Patel's earlier claim CLM-0412
-- [ ] Posting steps to CLM-1001 with curl makes them appear on its page, in order, within 3 seconds
-- [ ] After a decision is posted with curl, the page shows the decision, the payout, the reason, the policy section and whether it's paid
-- [ ] For a claim waiting for sign-off, the page shows the sign-off panel with the three handlers. Signing off as Dana Whitfield shows "Signed off by Dana Whitfield" and "Paid $1,250.00", and the queue shows it as Decided
-- [ ] `#/claims/CLM-9999` says the claim wasn't found
-- [ ] `#/instructions` shows the agent's instructions, with no text box or edit control
-- [ ] End-to-end test: standing in for the agent through the API (start, two steps, approve $1,250.00), the test sees the steps and Waiting for sign-off on the claim page, signs off in the page and sees Paid $1,250.00
-- [ ] End-to-end test: the instructions page shows the instructions
-- [ ] `npm run check:ts` and `npm run e2e` pass
+- [x] In the browser, `#/claims/CLM-1001` shows the story, the 3 items totaling $420.00, the 4 documents, the Premium plan with its trip dates, and Maya Patel's earlier claim CLM-0412
+- [x] Posting steps to CLM-1001 with curl makes them appear on its page, in order, within 3 seconds
+- [x] After a decision is posted with curl, the page shows the decision, the payout, the reason, the policy section and whether it's paid
+- [x] For a claim waiting for sign-off, the page shows the sign-off panel with the three handlers. Signing off as Dana Whitfield shows "Signed off by Dana Whitfield" and "Paid $1,250.00", and the queue shows it as Decided
+- [x] `#/claims/CLM-9999` says the claim wasn't found
+- [x] `#/instructions` shows the agent's instructions, with no text box or edit control
+- [x] End-to-end test: standing in for the agent through the API (start, two steps, approve $1,250.00), the test sees the steps and Waiting for sign-off on the claim page, signs off in the page and sees Paid $1,250.00
+- [x] End-to-end test: the instructions page shows the instructions
+- [x] `npm run check:ts` and `npm run e2e` pass
 
 ## Phase 6: the pilot with a real model, and the hand-over
 

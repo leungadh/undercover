@@ -12,6 +12,12 @@ const day = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
+const clock = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+});
+
 const moment = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
@@ -53,6 +59,11 @@ export function date(isoDate: string): string {
 /** Format a timestamp as a local date and time. */
 export function dateTime(timestamp: string): string {
   return moment.format(new Date(timestamp));
+}
+
+/** Format a timestamp as a local time to the second, such as 3:58:12 PM. */
+export function time(timestamp: string): string {
+  return clock.format(new Date(timestamp));
 }
 
 /** Turn an identifier such as trip_delay into a label such as Trip delay. */

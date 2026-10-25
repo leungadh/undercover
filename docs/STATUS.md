@@ -1,6 +1,6 @@
 # Status
 
-The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 4.
+The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 5.
 
 ## Built
 
@@ -16,8 +16,9 @@ The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 4.
   - `uv run -m agent` works every waiting claim; `uv run -m agent CLM-1001` works one.
 - `dashboard/`: React, Vite and TypeScript, in the UnderCover brand with light and dark modes.
   - The queue (`#/`): counts by status and every claim with its customer, type, amount, submitted date, status and decision. It refreshes every 2 seconds.
-  - A claim's page (`#/claims/<id>`) is a placeholder for now.
-- `e2e/`: Playwright tests of the queue. They run their own backend on port 8001 with a fresh database (`e2e/undercover-e2e.db`) and their own dashboard on port 5174, so they never change the dev queue.
+  - A claim's page (`#/claims/<id>`): the decision with its reason, policy section and payment; the sign-off for an approval over $1,000 (choose a handler, then Sign off and pay); the claim in full with its items and documents; the agent's steps, updating live; the policy with its plan's limits; and the customer with their claim history.
+  - The agent's instructions (`#/instructions`), read only.
+- `e2e/`: Playwright tests of the queue, a claim's page, the sign-off and the instructions. The sign-off test stands in for the agent through its API operations. They run their own backend on port 8001 with a fresh database (`e2e/undercover-e2e.db`) and their own dashboard on port 5174, so they never change the dev queue.
 
 ## Run it
 
