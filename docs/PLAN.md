@@ -150,18 +150,18 @@ Errors: 404 for an unknown id, 409 for the wrong status (for example, deciding a
 
 **Why now:** the $1,000 rule is the spec's hard rule. Building it in the backend, before the agent exists, means the agent can't get around it.
 
-- [ ] Starting `CLM-1001` moves it to `in_progress`, and starting it again returns 409
-- [ ] Two posted steps come back from `list_steps` in order, with their `kind`, `title`, `detail` and time
-- [ ] Deciding a `waiting` claim returns 409; only `in_progress` claims can be decided
-- [ ] Approving $420.00 moves the claim to `decided`. Paying $420.00 sets `paid_amount` to 420.0, and paying again returns 409
-- [ ] Paying an amount that differs from the approved payout returns 409
-- [ ] Approving $1,250.00 moves the claim to `awaiting_sign_off`. Paying $1,250.00 then returns 403 with a message that it needs a handler's sign-off, and `paid_amount` stays null
-- [ ] Signing off as `HND-01` moves the claim to `decided`, records `signed_off_by` `HND-01` and the time, and sets `paid_amount` to 1250.0
-- [ ] Signing off with an unknown handler returns 404, and signing off a claim that isn't waiting for sign-off returns 409
-- [ ] Approving exactly $1,000.00 moves the claim to `decided`, and it can be paid without sign-off
-- [ ] Declining or referring with a payout above $0 returns 422, and paying a declined or referred claim returns 409
-- [ ] Deciding a claim that's already decided returns 409
-- [ ] `npm run check:python` passes, with coverage at or above 80%
+- [x] Starting `CLM-1001` moves it to `in_progress`, and starting it again returns 409
+- [x] Two posted steps come back from `list_steps` in order, with their `kind`, `title`, `detail` and time
+- [x] Deciding a `waiting` claim returns 409; only `in_progress` claims can be decided
+- [x] Approving $420.00 moves the claim to `decided`. Paying $420.00 sets `paid_amount` to 420.0, and paying again returns 409
+- [x] Paying an amount that differs from the approved payout returns 409
+- [x] Approving $1,250.00 moves the claim to `awaiting_sign_off`. Paying $1,250.00 then returns 403 with a message that it needs a handler's sign-off, and `paid_amount` stays null
+- [x] Signing off as `HND-01` moves the claim to `decided`, records `signed_off_by` `HND-01` and the time, and sets `paid_amount` to 1250.0
+- [x] Signing off with an unknown handler returns 404, and signing off a claim that isn't waiting for sign-off returns 409
+- [x] Approving exactly $1,000.00 moves the claim to `decided`, and it can be paid without sign-off
+- [x] Declining or referring with a payout above $0 returns 422, and paying a declined or referred claim returns 409
+- [x] Deciding a claim that's already decided returns 409
+- [x] `npm run check:python` passes, with coverage at or above 80%
 
 ## Phase 3: the UnderCover Agent
 

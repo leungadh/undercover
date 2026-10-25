@@ -1,8 +1,8 @@
 """The shapes of the API's requests and responses."""
 
-from typing import Literal
+from typing import Literal, Self
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, model_validator
 
 Status = Literal["waiting", "in_progress", "awaiting_sign_off", "decided"]
 DecisionKind = Literal["approve", "decline", "refer"]
@@ -131,3 +131,35 @@ class Handler(BaseModel):
 
 class Text(BaseModel):
     content: str
+
+
+class NewStep(BaseModel):
+    kind: StepKind
+    title: str
+    detail: str
+
+
+class Step(NewStep):
+    step_id: int
+    created_at: str
+
+
+class Decision(BaseModel):
+    decision: DecisionKind
+    payout: float = Field(ge=0)
+    reason: str
+    policy_section: str
+
+    @model_validator(mode="after")
+    def payout_only_on_approval(self) -> Self:
+        if self.decision != "approve" and self.payout != 0:
+            raise ValueError("Only an approval has a payout")
+        return self
+
+
+class Payment(BaseModel):
+    amount: float
+
+
+class SignOff(BaseModel):
+    handler_id: str
