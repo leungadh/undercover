@@ -241,8 +241,8 @@ This is the only phase that spends API money: one claim, then the 25-claim queue
 - [ ] `uv run -m agent` works the rest of the queue and prints one line per claim. Afterwards no claim is `waiting` or `in_progress`
 - [ ] Through the API, every approved claim with a payout over $1,000 is `awaiting_sign_off` with `paid_amount` null, and every approved claim of $1,000 or less is paid
 - [ ] Signing off one held claim in the dashboard pays it, and it shows as Decided
-- [ ] `docs/STATUS.md` describes the backend, agent, dashboard and tests, and how to run them: `npm run dev`, `uv run -m agent`, `uv run -m backend.seed` and `npm run check`
-- [ ] `npm run check` passes in full
+- [x] `docs/STATUS.md` describes the backend, agent, dashboard and tests, and how to run them: `npm run dev`, `uv run -m agent`, `uv run -m backend.seed` and `npm run check`
+- [x] `npm run check` passes in full
 
 ## Not in this plan
 

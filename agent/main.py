@@ -179,8 +179,8 @@ def steps(message: BaseMessage) -> list[dict[str, str]]:
 def run(claim_id: str, thread_id: str, llm: BaseChatModel | None = None) -> str:
     """Work one claim, recording each step with the backend, and return the reply."""
     instructions = request("GET", "/api/instructions").json()["content"]
-    request("POST", f"/api/claims/{claim_id}/start").raise_for_status()
     agent = create_agent(llm or model(), tools=TOOLS, system_prompt=instructions)
+    request("POST", f"/api/claims/{claim_id}/start").raise_for_status()
     step_url = f"/api/claims/{claim_id}/steps"
     final = ""
     for update in agent.stream(
