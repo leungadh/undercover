@@ -175,15 +175,16 @@ def test_a_failed_tool_call_is_not_a_success():
 
 
 def test_model_name(monkeypatch):
-    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
     monkeypatch.delenv("MODEL_NAME", raising=False)
-    assert main.model().model_name == "openai/gpt-6-luna"
-    monkeypatch.setenv("MODEL_NAME", "openrouter/free")
-    assert main.model().model_name == "openrouter/free"
+    assert main.model().model_name == "gpt-6-luna"
+    assert main.model().reasoning_effort == "low"
+    monkeypatch.setenv("MODEL_NAME", "gpt-5-mini")
+    assert main.model().model_name == "gpt-5-mini"
 
 
 def test_a_missing_key_leaves_the_claim_waiting(client, monkeypatch):
-    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     with pytest.raises(KeyError):
         main.run("CLM-1001", "thread-1")
     assert client.get("/api/claims/CLM-1001").json()["status"] == "waiting"

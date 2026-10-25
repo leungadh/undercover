@@ -1,6 +1,6 @@
 # Status
 
-The pilot from `docs/PLAN.md` is built. Phase 6's runs with a real model are still to do: they need `OPENROUTER_API_KEY` in `.env`.
+The pilot from `docs/PLAN.md` is built. Phase 6's runs with a real model are still to do: they use `OPENAI_API_KEY` in `.env`.
 
 ## Built
 
@@ -10,7 +10,7 @@ The pilot from `docs/PLAN.md` is built. Phase 6's runs with a real model are sti
   - The claim workflow: `start_claim`, `add_step`, `list_steps`, `decide_claim`, `pay_claim` and `sign_off_claim`. A claim goes waiting, in progress, then decided, or waiting for sign-off when an approval pays over $1,000. A referral is a decision, with a $0 payout.
   - The payment rule: the backend pays only an approved, unpaid claim its exact payout, and refuses (403) a payout over $1,000 until a handler signs off. The sign-off pays it.
   - The agent's instructions are in `backend/instructions.md`.
-- `agent/`: the UnderCover Agent, LangChain's `create_agent` on OpenRouter (`openai/gpt-6-luna` at low reasoning, or `MODEL_NAME`).
+- `agent/`: the UnderCover Agent, LangChain's `create_agent` on OpenAI (`gpt-6-luna` at low reasoning, or the OpenAI model in `MODEL_NAME`).
   - `run(claim_id, thread_id)` fetches its instructions from the API, starts the claim and records every model message, tool call and tool result as a step.
   - Tools, each a call to the API: `get_claim`, `get_policy`, `get_claim_history` (name and earlier claims only), `get_policy_wording`, `decide_claim` and `pay_claim`.
   - `uv run -m agent` works every waiting claim; `uv run -m agent CLM-1001` works one.
@@ -28,7 +28,7 @@ The pilot from `docs/PLAN.md` is built. Phase 6's runs with a real model are sti
 
 ## Run it
 
-- Put `OPENROUTER_API_KEY=...` in `.env`, and optionally `MODEL_NAME=openrouter/free`.
+- Put `OPENAI_API_KEY=...` in `.env`, and optionally `MODEL_NAME` to use another OpenAI model.
 - `npm run dev` starts the backend on port 8000 and the dashboard at http://localhost:5173.
 - `uv run -m agent` works the queue, or `uv run -m agent CLM-1001` works one claim. The backend must be running.
 - `uv run -m backend.seed` resets the queue. A decided claim is final, so a rerun needs a reseed.

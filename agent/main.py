@@ -16,8 +16,7 @@ from pydantic import SecretStr
 load_dotenv(override=True)
 
 BACKEND_URL = "http://localhost:8000"
-OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-DEFAULT_MODEL = "openai/gpt-6-luna"
+DEFAULT_MODEL = "gpt-6-luna"
 REFUSED = "The backend refused: "
 
 CALL_TITLES = {
@@ -129,12 +128,11 @@ TOOLS = [
 
 
 def model() -> ChatOpenAI:
-    """Return the model named in MODEL_NAME, or GPT-6 Luna by default."""
+    """Return the OpenAI model named in MODEL_NAME, or GPT-6 Luna by default."""
     name = os.getenv("MODEL_NAME")
     return ChatOpenAI(
         model=name or DEFAULT_MODEL,
-        base_url=OPENROUTER_BASE_URL,
-        api_key=SecretStr(os.environ["OPENROUTER_API_KEY"]),
+        api_key=SecretStr(os.environ["OPENAI_API_KEY"]),
         reasoning_effort=None if name else "low",
     )
 
