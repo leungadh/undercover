@@ -237,10 +237,10 @@ Errors: 404 for an unknown id, 409 for the wrong status (for example, deciding a
 
 This is the only phase that spends API money: one claim, then the 25-claim queue on GPT-6 Luna at low reasoning. If you'd rather keep the cost down, tell me to run only one claim, or set `MODEL_NAME=openrouter/free` in `.env`.
 
-- [ ] After `uv run -m backend.seed`, with `npm run dev` running, `uv run -m agent CLM-1001` moves CLM-1001 through In progress to Decided in the browser. Its steps appear while it works, and its decision has a reason of two or three sentences and a policy section
-- [ ] `uv run -m agent` works the rest of the queue and prints one line per claim. Afterwards no claim is `waiting` or `in_progress`
-- [ ] Through the API, every approved claim with a payout over $1,000 is `awaiting_sign_off` with `paid_amount` null, and every approved claim of $1,000 or less is paid
-- [ ] Signing off one held claim in the dashboard pays it, and it shows as Decided
+- [x] After `uv run -m backend.seed`, with `npm run dev` running, `uv run -m agent CLM-1001` moves CLM-1001 through In progress to Decided in the browser. Its steps appear while it works, and its decision has a reason of two or three sentences and a policy section
+- [x] `uv run -m agent` works the rest of the queue and prints one line per claim. Afterwards no claim is `waiting` or `in_progress`
+- [x] Through the API, every approved claim with a payout over $1,000 is `awaiting_sign_off` with `paid_amount` null, and every approved claim of $1,000 or less is paid
+- [x] Signing off one held claim in the dashboard pays it, and it shows as Decided
 - [x] `docs/STATUS.md` describes the backend, agent, dashboard and tests, and how to run them: `npm run dev`, `uv run -m agent`, `uv run -m backend.seed` and `npm run check`
 - [x] `npm run check` passes in full
 

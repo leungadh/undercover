@@ -1,6 +1,6 @@
 # Status
 
-The pilot from `docs/PLAN.md` is built. Phase 6's runs with a real model are still to do: they use `OPENAI_API_KEY` in `.env`.
+The pilot from `docs/PLAN.md` is built, with every phase done. On GPT-6 Luna, the agent worked the 25-claim queue in about 4 minutes: 17 approvals (3 over $1,000, held for sign-off), 5 declines and 3 referrals.
 
 ## Built
 
