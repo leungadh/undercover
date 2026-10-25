@@ -1,6 +1,6 @@
 # Status
 
-The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 3.
+The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 4.
 
 ## Built
 
@@ -14,8 +14,10 @@ The pilot is being built from `docs/PLAN.md`. Done so far: Phases 1 to 3.
   - `run(claim_id, thread_id)` fetches its instructions from the API, starts the claim and records every model message, tool call and tool result as a step.
   - Tools, each a call to the API: `get_claim`, `get_policy`, `get_claim_history` (name and earlier claims only), `get_policy_wording`, `decide_claim` and `pay_claim`.
   - `uv run -m agent` works every waiting claim; `uv run -m agent CLM-1001` works one.
-- `dashboard/`: still the skeleton, with one page that shows whether the backend is up.
-- `e2e/`: one test of that page.
+- `dashboard/`: React, Vite and TypeScript, in the UnderCover brand with light and dark modes.
+  - The queue (`#/`): counts by status and every claim with its customer, type, amount, submitted date, status and decision. It refreshes every 2 seconds.
+  - A claim's page (`#/claims/<id>`) is a placeholder for now.
+- `e2e/`: Playwright tests of the queue. They run their own backend on port 8001 with a fresh database (`e2e/undercover-e2e.db`) and their own dashboard on port 5174, so they never change the dev queue.
 
 ## Run it
 

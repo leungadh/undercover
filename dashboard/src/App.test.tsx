@@ -1,20 +1,45 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, expect, it, vi } from "vitest";
+import { act, cleanup, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { App } from "./App";
+import { stubApi, summary } from "./testing";
+
+beforeEach(() => {
+  stubApi({ "GET /api/claims": [summary()] });
+});
 
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+  window.location.hash = "";
 });
 
-it("shows that the backend is up", async () => {
-  vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("{}")));
+function go(hash: string) {
+  act(() => {
+    window.location.hash = hash;
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  });
+}
+
+it("opens on the queue", async () => {
   render(<App />);
-  expect(await screen.findByText("Backend: up")).toBeDefined();
+  expect(
+    await screen.findByRole("heading", { name: "Claims queue" }),
+  ).toBeDefined();
+  const queue = screen.getByRole("link", { name: "Queue" });
+  expect(queue.getAttribute("aria-current")).toBe("page");
 });
 
-it("shows that the backend is down", async () => {
-  vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline")));
+it("goes to a claim's page", async () => {
   render(<App />);
-  expect(await screen.findByText("Backend: down")).toBeDefined();
+  go("#/claims/CLM-1001");
+  expect(
+    await screen.findByRole("heading", { name: "CLM-1001" }),
+  ).toBeDefined();
+});
+
+it("marks the instructions link when it is open", () => {
+  render(<App />);
+  go("#/instructions");
+  const link = screen.getByRole("link", { name: "Agent instructions" });
+  expect(link.getAttribute("aria-current")).toBe("page");
 });

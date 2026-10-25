@@ -195,14 +195,14 @@ Errors: 404 for an unknown id, 409 for the wrong status (for example, deciding a
 
 **Why now:** the API is complete, and the queue is the handlers' main screen.
 
-- [ ] In the browser (Playwright MCP) at `localhost:5173`, the queue shows 25 rows. Each row has the claim id, customer, type, amount claimed (such as $420.00), submitted date and a status badge in the brand color
-- [ ] The counts read Waiting 25, In progress 0, Waiting for sign-off 0, Decided 0
-- [ ] After `curl -X POST localhost:8000/api/claims/CLM-1001/start`, CLM-1001's badge changes to In progress and the counts update within 3 seconds, without reloading
-- [ ] Clicking CLM-1001 goes to `#/claims/CLM-1001`
-- [ ] With the backend stopped, the page says it can't reach the backend
-- [ ] Screenshots in light and dark mode match `docs/BRAND.md`: the fonts, panels with no outline, and no single-edge borders or top-of-page lines
-- [ ] `npm run e2e` passes, and the dev database is unchanged afterwards (`GET /api/claims` on port 8000 shows the same statuses as before)
-- [ ] `npm run check:ts` passes, with vitest coverage at or above 80%
+- [x] In the browser (Playwright MCP) at `localhost:5173`, the queue shows 25 rows. Each row has the claim id, customer, type, amount claimed (such as $420.00), submitted date and a status badge in the brand color
+- [x] The counts read Waiting 25, In progress 0, Waiting for sign-off 0, Decided 0
+- [x] After `curl -X POST localhost:8000/api/claims/CLM-1001/start`, CLM-1001's badge changes to In progress and the counts update within 3 seconds, without reloading
+- [x] Clicking CLM-1001 goes to `#/claims/CLM-1001`
+- [x] With the backend stopped, the page says it can't reach the backend
+- [x] Screenshots in light and dark mode match `docs/BRAND.md`: the fonts, panels with no outline, and no single-edge borders or top-of-page lines
+- [x] `npm run e2e` passes, and the dev database is unchanged afterwards (`GET /api/claims` on port 8000 shows the same statuses as before)
+- [x] `npm run check:ts` passes, with vitest coverage at or above 80%
 
 ## Phase 5: the claim page and the instructions page
 
