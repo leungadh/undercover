@@ -5,6 +5,7 @@ import sqlite3
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
+from pathlib import Path
 from typing import Annotated, Any
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -34,6 +35,8 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(title="UnderCover", lifespan=lifespan)
+
+INSTRUCTIONS = Path(__file__).parent / "instructions.md"
 
 Db = Annotated[sqlite3.Connection, Depends(db.database)]
 
@@ -147,6 +150,12 @@ def list_handlers(connection: Db) -> list[Handler]:
 def get_policy_wording() -> Text:
     """Get the policy wording that decisions follow."""
     return Text(content=(DATA / "policy_wording.md").read_text(encoding="utf-8"))
+
+
+@app.get("/api/instructions", operation_id="get_instructions")
+def get_instructions() -> Text:
+    """Get the agent's instructions."""
+    return Text(content=INSTRUCTIONS.read_text(encoding="utf-8"))
 
 
 @app.post("/api/claims/{claim_id}/start", operation_id="start_claim")

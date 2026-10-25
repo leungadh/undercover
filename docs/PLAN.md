@@ -173,15 +173,15 @@ Errors: 404 for an unknown id, 409 for the wrong status (for example, deciding a
 
 **Why now:** the backend's workflow is in place, so the agent only has to read, decide and call it.
 
-- [ ] `GET /api/instructions` returns the text of `backend/instructions.md`
-- [ ] Each tool, run against the in-process backend, returns the expected data, and `get_claim_history` leaves out the address, phone and date of birth
-- [ ] Stub-model test, approval under the limit: the agent reads the claim, policy, history and wording, approves $420.00 and pays it. The claim ends `decided`, paid $420.00, with tool call, tool result and message steps recorded
-- [ ] Stub-model test, approval over the limit: the agent approves $1,250.00 and then tries to pay. The payment is refused, the claim ends `awaiting_sign_off` and unpaid, and the refusal is in the steps
-- [ ] Stub-model tests, decline and refer: each claim ends `decided` with payout $0 and no payment
-- [ ] A test shows `run()` uses the instructions from the API as its system prompt
-- [ ] A test of `agent/__main__.py`, with `run` stubbed, shows it works only the `waiting` claims, or the one claim named
-- [ ] `grep -rn "from backend\|import backend" agent --include=*.py | grep -v /tests/` finds nothing
-- [ ] `npm run check:python` passes, with coverage at or above 80%
+- [x] `GET /api/instructions` returns the text of `backend/instructions.md`
+- [x] Each tool, run against the in-process backend, returns the expected data, and `get_claim_history` leaves out the address, phone and date of birth
+- [x] Stub-model test, approval under the limit: the agent reads the claim, policy, history and wording, approves $420.00 and pays it. The claim ends `decided`, paid $420.00, with tool call, tool result and message steps recorded
+- [x] Stub-model test, approval over the limit: the agent approves $1,250.00 and then tries to pay. The payment is refused, the claim ends `awaiting_sign_off` and unpaid, and the refusal is in the steps
+- [x] Stub-model tests, decline and refer: each claim ends `decided` with payout $0 and no payment
+- [x] A test shows `run()` uses the instructions from the API as its system prompt
+- [x] A test of `agent/__main__.py`, with `run` stubbed, shows it works only the `waiting` claims, or the one claim named
+- [x] `grep -rn "from backend\|import backend" agent --include=*.py | grep -v /tests/` finds nothing
+- [x] `npm run check:python` passes, with coverage at or above 80%
 
 ## Phase 4: the dashboard's base and the queue
 
